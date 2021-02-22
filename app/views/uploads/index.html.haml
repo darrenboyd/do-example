@@ -1,0 +1,14 @@
+%h1 Uploads
+
+= form_with(model: (@upload || Upload.new)) do |f|
+    = f.text_field :description
+    = f.file_field :file, direct_upload: true
+    = f.submit
+
+- if @uploads.empty?
+    %h2 No Uploads Yet
+- else
+    - @uploads.each do |upload|
+        %div
+            = upload.description
+            = image_tag(upload.file)
